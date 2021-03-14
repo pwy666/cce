@@ -1,0 +1,45 @@
+@media screen and (max-width: 1000px) {
+  .footer-pc {
+    display: none;
+  }
+  .footer {
+    height: 35px;
+    line-height: 35px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .footer-phone {
+    display: none;
+    background: #021718;
+  }
+  .footer {
+    height: 87px;
+  }
+  .footer-main {
+    width: 1200px;
+    margin: 0 auto;
+    height: 56px;
+    line-height: 56px;
+    padding: 0 100px;
+    border-bottom: 1px solid #073538;
+    justify-content: center;
+    img{
+      height: 20px;
+      vertical-align: middle;
+      margin-right:6px;
+    }
+  }
+
+  .main-arr {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .twitter-icon,
+  .telegram-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    vertical-align: middle;
+  }
+}

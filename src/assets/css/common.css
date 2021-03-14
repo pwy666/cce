@@ -1,0 +1,304 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input {
+  -webkit-appearance: none;
+}
+
+input::placeholder {
+  vertical-align: middle;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-appearance: none;
+  font-size: 14px;
+}
+
+body {
+  font-family: Regular, Hiragino Sans GB, Heiti SC, Microsoft YaHei,
+    WenQuanYi Micro Hei, Helvetica, Arial, monospace, serif;
+  /* font-family: cursive; */
+}
+
+.nowrap {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.textHidden {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hand {
+  cursor: hand;
+}
+.Bold {
+  font-weight: bold;
+}
+.container {
+  width: 100%;
+  user-select: none;
+}
+
+#container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.padding {
+  padding: 0 10px;
+}
+
+ul li {
+  list-style: none;
+}
+
+.allFlex {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.column {
+  flex-direction: column;
+}
+.positionAll {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centerAll {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.middleAll {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+input {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+.f1 {
+  flex: 1;
+}
+.f2 {
+  flex: 2;
+}
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+
+.hand {
+  cursor: pointer;
+}
+
+/* 字体大小 */
+.font-Two {
+  font-size: 12px;
+}
+
+.font-Four {
+  font-size: 14px;
+}
+
+.font-Five {
+  font-size: 15px;
+}
+
+.font-Six {
+  font-size: 16px;
+}
+
+.font-Seven {
+  font-size: 17px;
+}
+
+.font-Eight {
+  font-size: 18px;
+}
+
+.font-Ty {
+  font-size: 20px;
+}
+
+.font-Tt {
+  font-size: 22px;
+}
+
+.font-Tf {
+  font-size: 24px;
+}
+
+.font-Ts {
+  font-size: 26px;
+}
+
+.font-Te {
+  font-size: 28px;
+}
+
+.font-Th {
+  font-size: 30px;
+}
+
+.font-Th-t {
+  font-size: 32px;
+}
+
+.font-Title {
+  font-size: 38px;
+}
+
+.font-number {
+  font-size: 48px;
+}
+
+.downFont {
+  font-size: 56px;
+}
+
+.el-table::before {
+  background: transparent !important;
+}
+
+.el-input.is-disabled /deep/ .el-input__inner {
+  background: transparent !important;
+  border-color: #8c90a1 !important;
+}
+.el-select /deep/ .el-select-dropdown__item.hover,
+.el-select /deep/ .el-select-dropdown__item:hover {
+  background: transparent !important;
+}
+
+.el-input /deep/ .el-input__inner:hover {
+  border-color: #f0cd30 !important;
+}
+
+/* 字体 */
+.Wcolor {
+  color: #fff;
+}
+.Pcolor {
+  color: #f3b1c9;
+}
+.PFcolor {
+  color: #1260a1;
+}
+.GFcolor {
+  color: #2c439a;
+}
+.YFcolor {
+  color: #eba746;
+}
+.Gcolor {
+  color: #d5d7db;
+}
+.profont {
+  color: #a4a8b3;
+}
+.titleColor {
+  color: #242732;
+}
+.textColor {
+  color: #747583;
+}
+.proTitle {
+  color: #696969;
+}
+.navColor {
+  color: #79d9ff;
+}
+.bColor {
+  color: #000000;
+}
+.blueColor {
+  color: #16a7e1;
+}
+
+/* 主题色 */
+.mainBg {
+  background: #1d233d;
+}
+.headerBg {
+  background: #2d303f;
+}
+.cardBg {
+  background: #0a8415;
+}
+.boxBg {
+  background: #ffffff;
+}
+.boxBgs {
+  background: #e8f6ff;
+}
+.redBg {
+  background: #eb4682;
+}
+.ztBj {
+  background: #161b31;
+}
+.Ybg {
+  background: #ffa34e;
+}
+.blueBg {
+  background: #16a7e1;
+}
+.greenBg {
+  background: #4fdcc6;
+}
+.titleBg {
+  background: linear-gradient(90deg, #13a2dd 0%, #70ddca 99%);
+}
+
+.border {
+  border: 1px solid #52536d;
+}
+
+.radius {
+  border-radius: 10px;
+}
+
+.titleNav {
+  height: 45px;
+  line-height: 45px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.allTitle {
+  margin-top: 15px;
+  height: 22px;
+  font-size: 22px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 22px;
+}

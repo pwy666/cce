@@ -1,0 +1,6 @@
+dist/*.js
+src/assets
+public
+dist
+node_modules
+src/main.js

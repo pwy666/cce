@@ -1,0 +1,274 @@
+@media screen and (max-width: 1000px) {
+  .headerBox {
+    width: 100vw;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    .main-box,
+    .main {
+      height: 40px;
+    }
+  }
+  .logo_icon {
+    width: 45px;
+    height: 26px;
+    background: url('../../assets/img/phone/logo.png');
+    background-size: 100% 100%;
+    margin: auto 0;
+  }
+  .main-pc {
+    display: none;
+  }
+  .Fbox {
+    background: #004244;
+    position: relative;
+  }
+
+  .main-right {
+    position: relative;
+    z-index: 999;
+    align-items: center;
+  }
+  .list-pic {
+    width: 17px;
+    height: 14px;
+    margin: 0 15px;
+  }
+  .main-right-nav {
+    width: 86px;
+    padding: 10px;
+    position: absolute;
+    top: 42px;
+    left: -100%;
+    background: #055c63;
+
+    border-radius: 5px;
+  }
+  .main-right-nav li {
+    height: 30px;
+    line-height: 30px;
+  }
+  .main-right-nav .right-nav {
+    border-bottom: 1px solid #004244;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .main-phone {
+    display: none;
+  }
+  .el-dropdown-menu {
+    text-align: center;
+    background: #fff;
+  }
+  .el-dropdown-menu /deep/.el-dropdown-menu__item {
+    color: #f0cd30;
+    font-family: PingFang SC;
+  }
+  .el-dropdown-menu /deep/ .el-dropdown-menu__item:hover {
+    background: #ebe7d8;
+    color: #f0cd30;
+  }
+  .el-dropdown-menu /deep/ .popper__arrow::after {
+    border-bottom-color: #fff !important;
+  }
+  .el-dropdown-menu {
+    border: none !important;
+  }
+
+  /*头部组件样式*/
+  .box {
+    /* width: 100vw;   */
+    min-width: 85vw;
+    z-index: 999;
+  }
+  .main {
+    top: 0;
+    width: 100%;
+    position: fixed;
+  }
+  .main-box {
+    width: 85%;
+    min-width: 1000px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    margin: 0 auto;
+  }
+  .rela {
+    height: 70px;
+    line-height: 70px;
+  }
+  .flex {
+    height: 80px;
+    line-height: 80px;
+  }
+  .Fbox {
+    background: transparent;
+  }
+  .logo_icon {
+    width: 72px;
+    height: 42px;
+    background: url('../../assets/img/logo.png');
+    background-size: 100% 100%;
+    margin: auto 0;
+  }
+  ul li {
+    /*font-size: 16px;*/
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .main-left {
+    width: 130px;
+  }
+  .main-right {
+    position: relative;
+    color: #ffffff;
+    width: 700px;
+    align-items: center;
+    div {
+      padding:0 10px;
+      height:30px;
+      line-height: 30px;
+      margin:auto 0;
+      transition: ease-in 0.2s;
+    }
+
+  }
+  .main-right-user {
+    display: flex;
+    justify-content: center;
+  }
+  .main-right li .el-dropdown-link {
+    display: inline-block;
+    height: 100%;
+    font-size: 16px;
+  }
+  .flex .main-right li .el-dropdown-link {
+    color: #f0cd30;
+  }
+  .Rbox .main-right li .el-dropdown-link {
+    color: #f0cd30;
+  }
+  .item-title {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+    /*flex:1;*/
+  }
+
+  .announcement-title {
+    width: 250px;
+  }
+  .announcement-title span:first-child {
+    display: inline-block;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+
+  .announcement-last {
+    border-top: 2px solid #eee;
+  }
+
+  .item-title:hover {
+    color: #f0cd30;
+  }
+  .item-title:hover .el-dropdown-link {
+    color: #f0cd30 !important;
+  }
+
+  /*个人中心*/
+  .account-pic {
+    vertical-align: middle;
+  }
+  /*退出登录*/
+  .back-pic {
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  /*认证*/
+  .certification {
+    font-size: 28px;
+    vertical-align: middle;
+    margin-left: 2px;
+    /* color: #dcdcdc; */
+  }
+  /*语言*/
+  .lang-item {
+    position: relative;
+    padding: 0 30px;
+  }
+  .active:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    background: #f0cd30;
+    border-radius: 50%;
+  }
+
+  /* 皮肤提示 */
+  .skinPrompt {
+    position: absolute;
+    width: 400px;
+    height: 180px;
+    top: 60px;
+    left: -196px;
+  }
+  .skinPrompt::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+  }
+  .prompt-dialog {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: relative;
+    z-index: 999;
+    border-radius: 6px;
+    padding: 20px 15px;
+  }
+  .prompt-dialog::before {
+    width: 0;
+    height: 0;
+    position: absolute;
+    content: '';
+    left: 190px;
+    top: -6px;
+    border-bottom: 6px solid #fff;
+    border-left: 6px dashed transparent;
+    border-right: 6px dashed transparent;
+    z-index: 9999;
+  }
+  .k-pic {
+    width: 120px;
+    height: 120px;
+  }
+  .prompt-text {
+    text-align: right;
+    line-height: 30px;
+  }
+  .prompt-text p:last-child:hover {
+    color: #f0cd30;
+  }
+
+  .headerActive {
+    background: rgba(240, 205, 48, 1);
+    border-radius: 16px;
+  }
+}

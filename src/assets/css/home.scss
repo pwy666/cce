@@ -1,0 +1,217 @@
+.home {
+  padding: 0 10px;
+  color: #747583;
+  font-size: 14px;
+  .pool {
+    margin-top: 20px;
+
+    .top {
+      background: linear-gradient(90deg, #13a2dd 0%, #70ddca 99%);
+      border-radius: 10px 10px 0px 0px;
+      padding: 0 16px;
+      position: relative;
+      span {
+        height: 45px;
+        line-height: 45px;
+      }
+      span:nth-child(1) {
+        font-weight: 600;
+      }
+      span:nth-child(2) {
+        margin-right: 20px;
+      }
+      img {
+        position: absolute;
+        right: 16px;
+        width: 16px;
+        margin-top: 14px;
+      }
+    }
+    .bottom {
+      height: 70px;
+      padding: 0 10px;
+      align-items: center;
+      border-radius: 0 0 10px 10px;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      ul {
+        height: 33px;
+      }
+      .btn {
+        width: 90px;
+        height: 40px;
+        background: #1d233d;
+        border: 1px solid #5d5f82;
+        border-radius: 20px;
+        line-height: 40px;
+      }
+    }
+  }
+  .join {
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 26px 16px;
+    height: 250px;
+    align-items: center;
+    ul {
+      width: 100%;
+      height: 40px;
+    }
+    .btn {
+      width: 130px;
+      height: 45px;
+      background: linear-gradient(90deg, #13a2dd 0%, #70ddca 99%);
+      border-radius: 23px;
+      line-height: 45px;
+    }
+  }
+  .mining {
+    margin-top: 5px;
+    height: 195px;
+    border-radius: 10px;
+    padding: 15px 15px 15px 20px;
+    .top {
+      align-items: center;
+      div {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 5px;
+      }
+      .title {
+        margin-right: 100px;
+      }
+    }
+    ul {
+      li {
+        height: 40px;
+      }
+    }
+    .btns {
+      div {
+        width: 95px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+      }
+    }
+  }
+  .more {
+    margin-top: 5px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 10px;
+  }
+  .ts {
+    margin-top: 10px;
+  }
+  .ranking {
+    margin-top: 15px;
+    overflow: hidden;
+    margin-bottom: 53px;
+    height: 215px;
+    border-radius: 10px;
+    li:nth-child(1) {
+      height: 45px;
+      line-height: 45px;
+
+      background: linear-gradient(90deg, #13a2dd 0%, #70ddca 99%);
+    }
+    li:nth-child(2) {
+      flex: 1;
+    }
+    li:nth-child(3) {
+      flex: 1;
+    }
+    li:nth-child(4) {
+      flex: 1;
+    }
+    li {
+      align-items: center;
+      padding: 0 15px;
+      span:nth-child(3) {
+        width: 100px;
+        text-align: center;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .dailog {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 22px 17px;
+    .input {
+      position: relative;
+      input {
+        height: 45px;
+        line-height: 45px;
+        padding: 0 110px 0 10px;
+        border: 0;
+        background: #f7f7f7;
+        border-radius: 23px;
+      }
+      .right {
+        position: absolute;
+        right: 10px;
+        align-items: center;
+        width: 97px;
+        div {
+          width: 1px;
+          height: 25px;
+          background: #d2d0d0;
+        }
+      }
+    }
+
+    .btn {
+      width: 130px;
+      height: 45px;
+      line-height: 45px;
+
+      background: linear-gradient(90deg, #13a2dd 0%, #70ddca 99%);
+      border-radius: 23px;
+      margin: 0 auto;
+    }
+  }
+  .dailog2 {
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 22px 17px;
+    .btns {
+      width: 100%;
+      div:nth-child(1) {
+        width: 120px;
+        height: 45px;
+        line-height: 45px;
+        border: 1px solid #16a7e1;
+
+        border-radius: 23px;
+      }
+      div:nth-child(2) {
+        width: 120px;
+        height: 45px;
+        line-height: 45px;
+        border-radius: 23px;
+      }
+    }
+  }
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 45px;
+    padding: 0 10px;
+    border-radius: 23px !important;
+    background: #1d233d;
+    border: 1px solid #5d5f82;
+  }
+}

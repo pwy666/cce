@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <!-- <script src="./js/TronWeb.js"></script> -->
+    <style>
+      .box {
+        width: 50vw;
+        height: 50vh;
+        min-width: 300px;
+        position: fixed;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+      }
+
+      .main-li {
+        height: 60px;
+        line-height: 60px;
+        display: flex;
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+
+      .main-li span {
+        width: 120px;
+        font-size: 18px;
+      }
+
+      .main-li input {
+        flex: 1;
+        padding: 0 10px;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid rgb(207, 207, 207);
+        font-size: 18px;
+        color: #333;
+      }
+
+      .main-li-btn {
+        display: flex;
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .main-li-btn div {
+        width: 400px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid rgb(207, 207, 207);
+        font-size: 18px;
+        color: #333;
+        border-radius: 1px;
+        cursor: pointer;
+      }
+
+      #file {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <ul>
+        <li class="main-li">
+          <span>上级地址</span>
+          <input
+            type="text"
+            id="superadd"
+            value="TFHiBPFuLXZxkjKvDFq8fHxjYfVnw968Zh"
+          />
+
+          <span>用户地址</span>
+          <input
+            type="text"
+            id="useradd"
+            value="TKBbRk5YMegArMgSzEsmHCU6fDa2PuxJXU"
+          />
+        </li>
+        <li class="main-li">
+          <span>USDT数量</span>
+          <input type="text" id="usdtnumber" value="100" />
+
+          <span>CCE数量</span>
+          <input type="text" id="ccenumber" value="100" />
+        </li>
+
+        <li class="main-li">
+          <span>记录ID</span>
+          <input type="text" id="recid" value="0" />
+
+          <span>算力值</span>
+          <input type="text" id="power" value="1" />
+        </li>
+        <li class="main-li">
+          <span>闪兑数量</span>
+          <input type="text" id="number" value="100" />
+          <span>闪兑类型</span>
+          <input type="text" id="type" value="0" />
+        </li>
+        <li class="main-li-btn">
+          <div onclick="approve()">存款(授权)</div>
+          <div onclick="deposit()">立即参与矿池</div>
+        </li>
+        <li class="main-li-btn">
+          <div onclick="withdraw()">取款</div>
+        </li>
+        <li class="main-li-btn">
+          <div onclick="loan()">贷款</div>
+          <div onclick="repayment()">还款</div>
+        </li>
+        <li class="main-li-btn">
+          <div onclick="join()">加入理财</div>
+          <div onclick="out()">退出理财</div>
+        </li>
+        <li class="main-li-btn">
+          <div onclick="receive()">领取收益</div>
+        </li>
+        <li class="main-li-btn">
+          <div onclick="buypower()">购买算力</div>
+          <div onclick="flashcash()">闪兑（0-cce/usdt、1-usdt/cce）</div>
+        </li>
+        <li class="main-li-btn">
+          <div onclick="getprice()">查询usdt、cce、算力价格</div>
+          <div onclick="getralation()">查询上级 、直推下级</div>
+        </li>
+
+        <li class="main-li-btn">
+          <div onclick="getdeprec()">查询存款记录</div>
+          <div onclick="getwithrec()">查询取款记录</div>
+        </li>
+
+        <li class="main-li-btn">
+          <div onclick="getloanrec()">查询贷款记录</div>
+          <div onclick="getrepayrec()">查询还款记录</div>
+        </li>
+
+        <li class="main-li-btn">
+          <div onclick="getjoinrec()">查询理财记录</div>
+          <div onclick="getourec()">查询退出记录</div>
+        </li>
+
+        <li class="main-li-btn">
+          <div onclick="userbalance()">
+            查询用户ETH、USDT、CCE、可参与USDT余额
+          </div>
+          <div onclick="getprofit()">查询待领取的存币收益、理财收益</div>
+        </li>
+
+        <li class="main-li-btn">
+          <div onclick="getranking()">
+            流动数量、池子、业绩、用户所在池子、算力、USDT挖矿数量、CCE理财数量
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      //usdt合约地址
+      var usdt_contract = 'TAaoabkZKqPFuET1ex1DwzNb3akSCTxWQz';
+
+      //cce合约地址
+      var cce_contract = 'TCzRSByjQeiWLTYBZWUGphpqTU4XCxUnoj';
+
+      //存入（授权）
+      async function approve() {
+        let number = document.getElementById('usdtnumber').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(usdt_contract);
+
+          let res = await contract
+            .approve(cce_contract, number * 1000000)
+            .send({
+              feeLimit: 100000000,
+              callValue: 0,
+              shouldPollResponse: false,
+            });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //取款
+      async function withdraw() {
+        let id = document.getElementById('recid').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.withdraw(id).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //还款
+      async function repayment() {
+        let id = document.getElementById('recid').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.repayment(id).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //参与矿池
+      async function deposit() {
+        try {
+          let superadd = document.getElementById('superadd').value;
+          //调用合约
+          console.log(window.tronWeb);
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.deposit(superadd).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //借款
+      async function loan() {
+        let id = document.getElementById('recid').value;
+        let number = document.getElementById('ccenumber').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.loan(id, number * 1000000).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //还款
+      async function repayment() {
+        let id = document.getElementById('recid').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.repayment(id).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //参与理财
+      async function join() {
+        let number = document.getElementById('ccenumber').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.join(number * 1000000).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //退出理财
+      async function out() {
+        let id = document.getElementById('recid').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.out(id).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //领取收益
+      async function receive() {
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.receive().send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //购买算力
+      async function buypower() {
+        var number = document.getElementById('ccenumber').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.buypower(number).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //购买算力
+      async function flashcash() {
+        var type = document.getElementById('type').value;
+        var number = document.getElementById('number').value;
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.flashcash(type, number).send({
+            feeLimit: 100000000,
+            callValue: 0,
+            shouldPollResponse: false,
+          });
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询usdt、cce、算力价格
+      async function getprice() {
+        try {
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getprice().call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+      //查询上级 、直推下级
+      async function getralation() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getralation(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询存款记录
+      async function getdeprec() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getdeprec(user).call();
+          console.log('成功：', res.time);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询取款记录
+      async function getwithrec() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getdeprec(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询贷款记录
+      async function getloanrec() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getdeprec(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询还款记录
+      async function getrepayrec() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getrepayrec(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询理财记录
+      async function getjoinrec() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getjoinrec(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询退出记录
+      async function getourec() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getourec(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询收益记录
+      async function getprofitres() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getprofitres(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询用户ETH、USDT、CCE、可参与USDT余额
+      async function userbalance() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.userbalance(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //流动挖矿总数量、池子排名、池子业绩、团队业绩、用户所在池子、已购买的算力、用户已参与的USDT挖矿数量、CCE理财数量
+      async function getranking() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getranking(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //查询待领取的存币收益、理财收益
+      async function getprofit() {
+        try {
+          let user = document.getElementById('useradd').value;
+          //调用合约
+          let contract = await window.tronWeb.contract().at(cce_contract);
+          let res = await contract.getprofit(user).call();
+          console.log('成功：', res);
+        } catch (error) {
+          console.log('失败：', error);
+        }
+      }
+
+      //波场转账
+      async function sendTransaction() {
+        let res = await window.tronWeb.trx.sendTransaction(
+          'TCBj7zEBzAxrRw6C2keJn6aHPxx2dBqGHZ',
+          1000000
+        );
+        alert(res);
+      }
+
+      //时间戳转换方法    date:时间戳数字
+      function formatDate(date) {
+        var date = new Date(date * 1000);
+        var YY = date.getFullYear() + '-';
+        var MM =
+          (date.getMonth() + 1 < 10
+            ? '0' + (date.getMonth() + 1)
+            : date.getMonth() + 1) + '-';
+        var DD = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+        var hh =
+          (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) +
+          ':';
+        var mm =
+          (date.getMinutes() < 10
+            ? '0' + date.getMinutes()
+            : date.getMinutes()) + ':';
+        var ss =
+          date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+        return YY + MM + DD + ' ' + hh + mm + ss;
+      }
+    </script>
+  </body>
+</html>
